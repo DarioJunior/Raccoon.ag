@@ -31,11 +31,17 @@ const new_products_list = products_list.map(
   ({id, name, price}) => ({id, name, item_price: price})
   );
 
-for (i = 0; i < new_products_list.length; i++){
-  let price = new_products_list[i]['item_price'];
-  let nPrice = Number(price.replace(/['R$ ']+/g,''));
-  nPrice = parseFloat(nPrice.toFixed(2));
-  new_products_list[i]['item_price'] = nPrice;
-  } 
-    
-console.log(new_products_list);
+  new_products_list.forEach((element) => {
+    let price = element['item_price'];
+    let nPrice = Number(price.replace(/['R$ ']+/g,''));
+    nPrice = parseFloat(nPrice.toFixed(2));
+    price = nPrice
+    element.item_price = price;
+});
+
+// for (i = 0; i < new_products_list.length; i++){
+//   let price = new_products_list[i]['item_price'];
+//   let nPrice = Number(price.replace(/['R$ ']+/g,''));
+//   nPrice = parseFloat(nPrice.toFixed(2));
+//   new_products_list[i]['item_price'] = nPrice;
+//   } 

@@ -63,7 +63,6 @@ var cart_products = [{
 */
 
 var cart_products2 =[];
-const cart_products_sanitized = cart_products2;
 
 // forEach para checar produtos sem stock
 cart_products.forEach((val, index) => {
@@ -74,19 +73,43 @@ cart_products.forEach((val, index) => {
    };
 });    
 
-// Checando itens iguais
+
 cart_products2.forEach(check)
 function check(item, index){
     let j = index + 1; // +1 para que no for ele não dê um check no mesmo item
-    let value1 = (item['product_id']);
-
-    for (var i = j; i < cart_products2.length; i++) { // i iniciando por 1 e não 0
-        let value2 = cart_products2[i]['product_id'];
-        if(value1 == value2) { //condição => caso houver igualdade
-            cart_products2.splice([i], 1); // remover [i] => index
+    let value1 = item['product_id'];
+    let qtProd1 = Number(item['product_cart_quantity']);
+    let qtStock1 = item['product_stock_quantity'];
+    if (qtProd1 < qtStock1) {
+        for (var i = j; i < cart_products2.length; i++) { // i iniciando por 1 e não 0
+            let value2 = cart_products2[i]['product_id'];
+            if(value1 == value2) { //codição => caso houver igualdade
+                cart_products2.splice([i], 1); // remover [i] => index
+            };
         };
     };
 };
+
+const cart_products_sanitized = cart_products2.map(
+    ({product_id,
+     product_name,
+     product_price,
+     product_cart_quantity,
+     product_url,
+     product_category,
+     product_stock_quantity,
+     product_brand
+     }) => ({
+        product_id,
+        product_name, 
+        product_price,
+        product_quantity:product_cart_quantity,
+        product_url,
+        product_category,
+        product_stock_quantity,
+        product_brand,
+        })
+    );
 
 /* 
 ----------------
@@ -116,6 +139,6 @@ function check(item, index){
 //             cart_products_sanitized.push(filter1[i]);//se repetir ele ignora o item 
 //         }
 //     } 
-//console.log(cart_products_sanitized)
+
 
 

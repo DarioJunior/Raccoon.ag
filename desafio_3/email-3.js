@@ -25,7 +25,7 @@ var cart_products = [{
 }, {
     'product_id': 'BR8810',
     'product_name': 'Miniatura Yoshi Haras',
-    'product_price': '6.54',
+    'product_price': '6.50',
     'product_quantity': '2',
     'product_url': 'http://www.foo.com/p/BR8810',
     'product_category': 'others',
@@ -59,3 +59,4 @@ function checkShipping(total){
 
     }
 }
+console.log(cartPricesInfo)
