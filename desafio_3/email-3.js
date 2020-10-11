@@ -59,4 +59,3 @@ function checkShipping(total){
 
     }
 }
-console.log(cartPricesInfo)
